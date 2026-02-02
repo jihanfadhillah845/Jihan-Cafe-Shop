@@ -145,12 +145,12 @@
       /* Sun Yellow */
     }
 
-    /* Loading animation (Dark Coffee Theme) */
+    /* Loading animation (Dark Coffee Theme - Cute Version) */
     #preloader {
       position: fixed;
       inset: 0;
-      background: #1a0f0a;
-      /* Dark Chocolate */
+      background: linear-gradient(135deg, #1a0f0a 0%, #2c1612 50%, #1a0f0a 100%);
+      /* Dark Chocolate Gradient */
       z-index: 9999;
       display: flex;
       justify-content: center;
@@ -160,17 +160,169 @@
     }
 
     .cute-loader {
-      font-size: 3rem;
-      animation: bounce 1s infinite alternate;
+      font-size: 4rem;
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .cute-loader .coffee-cup {
+      animation: coffeeBounce 1.2s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    .cute-loader .steam {
+      animation: steamFloat 1.5s ease-in-out infinite;
+      opacity: 0.8;
+    }
+
+    .cute-loader .sparkle {
+      animation: sparkleRotate 2s linear infinite;
+    }
+
+    .cute-loader .heart {
+      animation: heartBeat 1s ease-in-out infinite;
+      color: #d97706;
     }
 
     .loading-text {
       margin-top: 1rem;
-      font-family: 'Courier New', monospace;
+      font-family: 'Georgia', serif;
       font-weight: bold;
+      font-size: 1.2rem;
       color: #c4a77d;
-      letter-spacing: 2px;
-      animation: pulse 1s infinite;
+      letter-spacing: 3px;
+      animation: textGlow 2s ease-in-out infinite;
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      gap: 4px;
+      margin-left: 8px;
+    }
+
+    .loading-dots span {
+      width: 8px;
+      height: 8px;
+      background-color: #d97706;
+      border-radius: 50%;
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+
+    .loading-dots span:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .loading-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .loading-subtext {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #8b7355;
+      animation: fadeInOut 3s ease-in-out infinite;
+    }
+
+    @keyframes coffeeBounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(5deg);
+      }
+    }
+
+    @keyframes steamFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes sparkleRotate {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: rotate(180deg) scale(1.3);
+      }
+
+      100% {
+        transform: rotate(360deg) scale(1);
+      }
+    }
+
+    @keyframes heartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      25% {
+        transform: scale(1.2);
+      }
+
+      50% {
+        transform: scale(1);
+      }
+
+      75% {
+        transform: scale(1.3);
+      }
+    }
+
+    @keyframes textGlow {
+
+      0%,
+      100% {
+        text-shadow: 0 0 5px rgba(196, 167, 125, 0.3);
+      }
+
+      50% {
+        text-shadow: 0 0 20px rgba(217, 119, 6, 0.6), 0 0 30px rgba(196, 167, 125, 0.4);
+      }
+    }
+
+    @keyframes dotBounce {
+
+      0%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes fadeInOut {
+
+      0%,
+      100% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     @keyframes bounce {
@@ -310,7 +462,7 @@
         JIVA COFFE BY JF
       </h1>
       <p class="text-xl md:text-2xl mb-8 text-amber-200" data-aos="fade-up">
-        Ngopi â€¢ Belajar â€¢ Berkarya
+        Ngopi.Belajar.Nyantai
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="zoom-in">
         <a href="#profil"
@@ -623,7 +775,7 @@
 
       <div class="mt-12 text-center">
         <button onclick="openModal('menuModal')"
-          class="inline-block border-2 border-amber-700 text-amber-800 px-8 py-3 rounded-full font-bold hover:bg-amber-800 hover:text-white transition-colors animate-bounce shadow-md">
+          class="inline-block border-2 border-amber-500 text-amber-400 px-8 py-3 rounded-full font-bold hover:bg-amber-600 hover:text-white hover:border-amber-600 transition-colors animate-bounce shadow-md">
           Lihat Daftar Menu Lengkap ðŸ“œ
         </button>
       </div>
@@ -636,30 +788,34 @@
       <div data-aos="fade-up">
         <h2 class="text-3xl font-bold mb-6 text-center text-amber-100">Profil Bisnis</h2>
         <div class="space-y-4">
-          <div class="flex items-start space-x-4 p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors">
-            <i class="fas fa-coffee text-amber-700 text-xl mt-1"></i>
+          <div
+            class="flex items-start space-x-4 p-4 bg-gradient-to-r from-amber-900/60 to-amber-950 rounded-lg hover:from-amber-900/80 transition-colors border border-amber-800/30">
+            <i class="fas fa-coffee text-amber-400 text-xl mt-1"></i>
             <div>
-              <h4 class="font-semibold text-lg">Nama Usaha</h4>
-              <p class="text-gray-600">
+              <h4 class="font-semibold text-lg text-amber-100">Nama Usaha</h4>
+              <p class="text-amber-200/70">
                 JIVA COFFE BY JF</p>
             </div>
           </div>
-          <div class="flex items-start space-x-4 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-            <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1"></i>
+          <div
+            class="flex items-start space-x-4 p-4 bg-gradient-to-r from-amber-900/60 to-amber-950 rounded-lg hover:from-amber-900/80 transition-colors border border-amber-800/30">
+            <i class="fas fa-map-marker-alt text-amber-400 text-xl mt-1"></i>
             <div>
-              <h4 class="font-semibold text-lg">Lokasi</h4>
-              <p class="text-gray-600">jalan raya,perkotaan</p>
+              <h4 class="font-semibold text-lg text-amber-100">Lokasi</h4>
+              <p class="text-amber-200/70">jalan raya,perkotaan</p>
             </div>
           </div>
-          <div class="flex items-start space-x-4 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-            <i class="fas fa-clock text-green-500 text-xl mt-1"></i>
+          <div
+            class="flex items-start space-x-4 p-4 bg-gradient-to-r from-amber-900/60 to-amber-950 rounded-lg hover:from-amber-900/80 border border-amber-800/30 transition-colors">
+            <i class="fas fa-clock text-amber-400 text-xl mt-1"></i>
             <div>
               <h4 class="font-semibold text-lg">Jam Operasional</h4>
               <p class="text-gray-600">Setiap hari 10.00 â€“ 03.00</p>
             </div>
           </div>
-          <div class="flex items-start space-x-4 p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
-            <i class="fas fa-utensils text-purple-500 text-xl mt-1"></i>
+          <div
+            class="flex items-start space-x-4 p-4 bg-gradient-to-r from-amber-900/60 to-amber-950 rounded-lg hover:from-amber-900/80 border border-amber-800/30 transition-colors">
+            <i class="fas fa-utensils text-amber-400 text-xl mt-1"></i>
             <div>
               <h4 class="font-semibold text-lg">Layanan</h4>
               <p class="text-gray-600">Ruang Meetingf / Ruang VIP / WIFI / + Board Game,berbagai permainan ringan untuk
@@ -682,31 +838,35 @@
           class="bg-gradient-to-br from-amber-900/60 to-amber-950 p-6 rounded-xl card-hover group border border-amber-800/30"
           data-aos="flip-left">
           <div
-            class="bg-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            class="bg-amber-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-users text-white text-2xl"></i>
           </div>
           <h3 class="font-semibold text-lg mb-2">Target Pasar</h3>
-          <p class="text-gray-300">15-35 Tahun,terdiri dari pelajar,mahasiswa dan pekerja muda.
+          <p class="text-amber-200/80">15-35 Tahun,terdiri dari pelajar,mahasiswa dan pekerja muda.
 
           </p>
         </div>
-        <div class="bg-gray-800 p-6 rounded-xl card-hover group" data-aos="flip-left" data-aos-delay="100">
+        <div
+          class="bg-gradient-to-br from-amber-900/60 to-amber-950 p-6 border border-amber-800/30 rounded-xl card-hover group"
+          data-aos="flip-left" data-aos-delay="100">
           <div
-            class="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            class="bg-amber-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-chart-line text-white text-2xl"></i>
           </div>
           <h3 class="font-semibold text-lg mb-2">Minat Ngopi & Belajar Meningkat</h3>
-          <p class="text-gray-300">Meningkatnya kebutuhan tempat nyaman untuk nongki dan Belajar
+          <p class="text-amber-200/80">Meningkatnya kebutuhan tempat nyaman untuk nongki dan Belajar
 
           </p>
         </div>
-        <div class="bg-gray-800 p-6 rounded-xl card-hover group" data-aos="flip-left" data-aos-delay="200">
+        <div
+          class="bg-gradient-to-br from-amber-900/60 to-amber-950 p-6 border border-amber-800/30 rounded-xl card-hover group"
+          data-aos="flip-left" data-aos-delay="200">
           <div
-            class="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            class="bg-amber-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-door-open text-white text-2xl"></i>
           </div>
           <h3 class="font-semibold text-lg mb-2">Kesempatan Pasar Lokal</h3>
-          <p class="text-gray-300">Peluang besar untuk menjadi caffe belajar pilihan
+          <p class="text-amber-200/80">Peluang besar untuk menjadi caffe belajar pilihan
 
           </p>
         </div>
@@ -1028,7 +1188,7 @@
             <!-- Category: Non-Coffee -->
             <div>
               <h4 class="text-xl font-bold text-green-800 border-b-2 border-amber-200 pb-2 mb-4 flex items-center">
-                <i class="fas fa-leaf mr-2 text-green-500"></i> Non-Coffee & Tea
+                <i class="fas fa-leaf mr-2 text-amber-400"></i> Non-Coffee & Tea
               </h4>
               <ul class="space-y-3">
                 <li
@@ -1231,7 +1391,7 @@
             <!-- Category: Dessert -->
             <div>
               <h4 class="text-xl font-bold text-purple-800 border-b-2 border-amber-200 pb-2 mb-4 flex items-center">
-                <i class="fas fa-ice-cream mr-2 text-purple-500"></i> Dessert & Sweets
+                <i class="fas fa-ice-cream mr-2 text-amber-400"></i> Dessert & Sweets
               </h4>
               <ul class="space-y-3">
                 <li
@@ -1870,11 +2030,11 @@
 
       // Reset selection
       document.querySelectorAll('.payment-option').forEach(opt => {
-        opt.classList.remove('selected', 'ring-2', 'ring-pink-500');
+        opt.classList.remove('selected', 'ring-2', 'ring-amber-500');
       });
 
       // Set selection
-      element.classList.add('selected', 'ring-2', 'ring-pink-500');
+      element.classList.add('selected', 'ring-2', 'ring-amber-500');
     }
 
     function processOrder() {
@@ -1942,3 +2102,4 @@ Silahkan selesaikan pembayaran di aplikasi ${selectedPaymentMethod} kamu.`);
   </script>
 
 </body>
+
