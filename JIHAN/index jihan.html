@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>JIVA COFFE BY JF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Animate on Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Custom animations and styles */
+    .gradient-bg {
+      /* Cute Pink Pastel Gradient */
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fad0c4 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(100, 50, 10, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(251, 146, 60, 0.8);
+      }
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Dark mode styles */
+    /* Dark mode (Rank/Night) styles */
+    /* Mode Gelap (Premium Coffee Night) */
+    .dark body {
+      background-color: #0f0505;
+      /* Blackest Coffee */
+      color: #e6dace;
+      /* Cream Text */
+    }
+
+    .dark {
+      background-color: #0f0505;
+      color: #e6dace;
+    }
+
+    /* Override Utility Classes for Dark Mode */
+    .dark .bg-white {
+      background-color: #2c1612 !important;
+      /* Dark Roasted Bean */
+      color: #e6dace !important;
+      border: 1px solid #4a2c20;
+    }
+
+    .dark .bg-gray-50,
+    .dark .bg-gray-100 {
+      background-color: #1a0f0a !important;
+      /* Very Dark Brown */
+      color: #e6dace !important;
+    }
+
+    .dark .text-gray-800,
+    .dark .text-gray-900,
+    .dark .text-gray-700 {
+      color: #f5e6d3 !important;
+      /* Light Cream */
+    }
+
+    .dark .text-gray-600,
+    .dark .text-gray-500 {
+      color: #d7ccc8 !important;
+      /* Muted Cream */
+    }
+
+    .dark .shadow-md,
+    .dark .shadow-lg {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Header Dark Mode */
+    .dark header {
+      background-color: rgba(26, 15, 10, 0.95);
+      /* Dark Brown Transparent */
+      border-bottom: 1px solid #4a2c20;
+    }
+
+    .dark #darkModeToggle {
+      background-color: #4a2c20;
+      color: #fbbf24;
+      /* Sun Yellow */
+    }
+
+    /* Loading animation (Cute) */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #fff0f5;
+      /* Lavender Blush */
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: opacity 0.5s ease-out;
+    }
+
+    .cute-loader {
+      font-size: 3rem;
+      animation: bounce 1s infinite alternate;
+    }
+
+    .loading-text {
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      color: #ff69b4;
+      letter-spacing: 2px;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Checkout Modal Styles */
+    .payment-option {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .payment-option:hover {
+      transform: translateY(-5px);
+    }
+
+    .payment-option.selected {
+      border-color: #f472b6;
+      background-color: #fdf2f8;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #ff4d4d;
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      border: 2px solid white;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 transition-colors duration-300">
+
+  <!-- Cute Preloader -->
+  <div id="preloader">
+    <div class="cute-loader">🐱☕✨</div>
+    <div class="loading-text">Sedang Menyiapkan Kopi...</div>
+  </div>
+
+  <!-- Sticky Navigation Header -->
+  <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-6 py-4">
+      <div class="flex JFkan items-center">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-mug-hot text-pink-500 text-2xl animate-bounce"></i>
+          <span class="font-bold text-xl text-pink-600 font-serif">JIVA COFFE (Cute Edition)</span>
+        </div>
+
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="#ringkasan" class="text-pink-700 hover:text-pink-500 font-medium transition-colors">Ringkasan</a>
+          <a href="#menu" class="text-pink-700 hover:text-pink-500 font-medium transition-colors">Menu</a>
+          <a href="#profil" class="text-pink-700 hover:text-pink-500 font-medium transition-colors">Profil</a>
+          <a href="#pasar" class="text-pink-700 hover:text-pink-500 font-medium transition-colors">Pasar</a>
+          <a href="#pemasaran" class="text-pink-700 hover:text-pink-500 font-medium transition-colors">Pemasaran</a>
+          <!-- Auth Section -->
+          <div id="authSection">
+            <button onclick="openModal('loginModal')"
+              class="bg-pink-400 hover:bg-pink-500 text-white px-6 py-2 rounded-full font-bold transition-all shadow-[0_4px_14px_0_rgba(244,114,182,0.39)] hover:shadow-[0_6px_20px_rgba(244,114,182,0.23)] hover:-translate-y-1">
+              Login 💕
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-200 transition-colors">
+            <i class="fas fa-moon text-gray-600"></i>
+          </button>
+          <button id="mobileMenuToggle" class="md:hidden p-2">
+            <i class="fas fa-bars text-gray-600"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4">
+        <a href="#ringkasan" class="block py-2 hover:text-orange-500 transition-colors">Ringkasan</a>
+        <a href="#menu" class="block py-2 hover:text-orange-500 transition-colors">Menu</a>
+        <a href="#profil" class="block py-2 hover:text-orange-500 transition-colors">Profil</a>
+        <a href="#pasar" class="block py-2 hover:text-orange-500 transition-colors">Pasar</a>
+        <a href="#pemasaran" class="block py-2 hover:text-orange-500 transition-colors">Pemasaran</a>
+        <!-- Mobile Auth -->
+        <div id="mobileAuthSection" class="pt-2 border-t border-gray-100 mt-2">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="gradient-bg text-white min-h-screen flex items-center relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <!-- Cute Floating Icons -->
+      <i class="fas fa-heart absolute top-20 left-10 text-6xl text-pink-200 opacity-40 floating"></i>
+      <i class="fas fa-star absolute top-40 right-20 text-8xl text-yellow-200 opacity-40 floating"
+        style="animation-delay: 2s; transform: rotate(45deg);"></i>
+      <i class="fas fa-mug-hot absolute bottom-20 left-1/4 text-7xl text-white opacity-30 floating"
+        style="animation-delay: 4s;"></i>
+      <i class="fas fa-cloud absolute bottom-40 right-1/3 text-5xl text-blue-100 opacity-40 floating"
+        style="animation-delay: 1s;"></i>
+      <div
+        class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse">
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+      <div class="floating">
+        <i class="fas fa-mug-hot text-6xl mb-6 text-orange-300"></i>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-4" data-aos="fade-down">
+        JIVA COFFE BY JF
+      </h1>
+      <p class="text-xl md:text-2xl mb-8" data-aos="fade-up">
+        Ngopi • Belajar • Berkarya
+
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="zoom-in">
+        <a href="#profil"
+          class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-full text-lg font-semibold transition pulse-glow">
+          <i class="fas fa-play mr-2"></i> Jelajahi Bisnis
+        </a>
+        <button
+          class="bg-white/20 backdrop-blur-sm hover:bg-white/30 px-8 py-4 rounded-full text-lg font-semibold transition border border-white/30">
+          <i class="fas fa-info-circle mr-2"></i> Info Lebih Lanjut
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAFTAR ISI -->
+  <section class="py-16" style="background-color: #FFF8E7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Daftar Isi</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow card-hover group cursor-pointer" data-aos="zoom-in">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-file-alt text-orange-500 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+            <h3 class="font-semibold text-lg">Ringkasan Eksekutif</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Gambaran umum bisnis JIVA COFFE BY JF</p>
+          <a href="#ringkasan" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group cursor-pointer" data-aos="zoom-in"
+          data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-store text-orange-500 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+            <h3 class="font-semibold text-lg">Profil Bisnis</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Informasi lengkap tentang usaha kami</p>
+          <a href="#profil" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group cursor-pointer" data-aos="zoom-in"
+          data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-chart-line text-orange-500 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+            <h3 class="font-semibold text-lg">Analisis Pasar</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Potensi dan peluang caffe</p>
+          <a href="#pasar" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group cursor-pointer" data-aos="zoom-in"
+          data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-bullhorn text-orange-500 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+            <h3 class="font-semibold text-lg">Strategi Pemasaran</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Cara kami menjangkau pelanggan</p>
+          <a href="#pemasaran" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group cursor-pointer" data-aos="zoom-in"
+          data-aos-delay="400">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-users text-orange-500 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+            <h3 class="font-semibold text-lg">Rencana Manajemen</h3>
+          </div>
+          <p class="text-gray-600 mb-4">Struktur tim dan operasional</p>
+          <a href="#manajemen" class="text-orange-500 hover:text-orange-600 font-medium inline-flex items-center">
+            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RINGKASAN -->
+  <section class="py-20" id="ringkasan" style="background-color: #FFD1DC;">
+    <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
+      <div class="inline-block p-4 rounded-full bg-orange-100 mb-6">
+        <i class="fas fa-file-alt text-orange-600 text-4xl"></i>
+      </div>
+      <h2 class="text-4xl font-bold mb-6 text-gray-800">Ringkasan Eksekutif</h2>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
+        <span class="font-semibold text-orange-600">JIVA COFFE BY JF</span> menghadirkan pengalaman ngopi yang berbeda.
+        Kami menyajikan ragam minuman <span class="italic">coffee</span> dan <span class="italic">non-coffee</span>
+        berkualitas,
+        dilengkapi dengan aneka hidangan lezat mulai dari
+        <span class="font-medium">Main Course</span>, <span class="font-medium">Snack</span>, hingga
+        <span class="font-medium">Bakery & Pastry</span> bergaya Western.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-orange-500">
+          <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-utensils text-orange-500 text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2 text-gray-800">Menu Variatif</h4>
+          <p class="text-gray-600">
+            Kopi pilihan, Bakery hangat, dan Pastry favorit pelengkap hari Anda.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-orange-500">
+          <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-wallet text-orange-500 text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2 text-gray-800">Harga Terjangkau</h4>
+          <p class="text-gray-600">
+            Nikmati kemewahan rasa dengan harga bersahabat, mulai dari Rp 10.000 (Under 10k).
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-orange-500">
+          <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-couch text-orange-500 text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-lg mb-2 text-gray-800">Fasilitas Lengkap</h4>
+          <p class="text-gray-600">
+            Area Indoor Sejuk (AC), Outdoor Nyaman, Spot Smoking, dan WiFi Cepat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section id="menu" class="py-16 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-orange-100 rounded-full opacity-50 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-amber-100 rounded-full opacity-50 blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-amber-950 mb-4">Menu Favorit Kami</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Rasakan kenikmatan dari setiap tegukan dan gigitan. Dibuat dengan
+          bahan pilihan untuk menemani hari Anda.</p>
+      </div>
+
+      <!-- Categories -->
+      <div class="flex flex-wrap justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="100">
+        <button
+          class="menu-btn active px-6 py-2 rounded-full border border-orange-500 bg-orange-500 text-white font-medium hover:bg-orange-600 transition-all"
+          onclick="filterMenu('all', this)">Semua</button>
+        <button
+          class="menu-btn px-6 py-2 rounded-full border border-orange-500 text-orange-600 font-medium hover:bg-orange-500 hover:text-white transition-all"
+          onclick="filterMenu('coffee', this)">Coffee</button>
+        <button
+          class="menu-btn px-6 py-2 rounded-full border border-orange-500 text-orange-600 font-medium hover:bg-orange-500 hover:text-white transition-all"
+          onclick="filterMenu('non-coffee', this)">Non-Coffee</button>
+        <button
+          class="menu-btn px-6 py-2 rounded-full border border-orange-500 text-orange-600 font-medium hover:bg-orange-500 hover:text-white transition-all"
+          onclick="filterMenu('snack', this)">Snack</button>
+        <button
+          class="menu-btn px-6 py-2 rounded-full border border-orange-500 text-orange-600 font-medium hover:bg-orange-500 hover:text-white transition-all"
+          onclick="filterMenu('main', this)">Main Course</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="menuGrid">
+        <!-- Coffee Items -->
+        <div
+          class="menu-item coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=800&auto=format&fit=crop"
+              alt="Kopi Susu Jiva"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+            <div class="absolute top-3 right-3 bg-white text-pink-600 text-xs font-bold px-2 py-1 rounded shadow z-10">
+              Best Seller</div>
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Kopi Susu Jiva</h3>
+            <p class="text-gray-500 text-sm mb-3">Espresso, Gula Aren, Susu Creamy</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 15.000</span>
+              <button onclick="addToCart('Kopi Susu Jiva', 15000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="menu-item coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="100">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="assets/americano.jpg" alt="Americano"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Americano</h3>
+            <p class="text-gray-500 text-sm mb-3">100% Arabica Espresso, Air Panas</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 12.000</span>
+              <button onclick="addToCart('Americano', 12000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Coffee Items -->
+        <div
+          class="menu-item coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="150">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?q=80&w=800&auto=format&fit=crop"
+              alt="Coffee Latte"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Coffee Latte</h3>
+            <p class="text-gray-500 text-sm mb-3">Espresso, Steamed Milk, Light Foam</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 18.000</span>
+              <button onclick="addToCart('Coffee Latte', 18000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="menu-item coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="200">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=800&auto=format&fit=crop"
+              alt="Vanilla Latte"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Vanilla Latte</h3>
+            <p class="text-gray-500 text-sm mb-3">Espresso, Milk, Vanilla Syrup</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 20.000</span>
+              <button onclick="addToCart('Vanilla Latte', 20000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Non-Coffee Items -->
+        <div
+          class="menu-item non-coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="250">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="assets/red_velvet.png" alt="Red Velvet"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Red Velvet</h3>
+            <p class="text-gray-500 text-sm mb-3">Red Velvet Premium, Fresh Milk</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 19.000</span>
+              <button onclick="addToCart('Red Velvet', 19000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="menu-item non-coffee bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="300">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=800&auto=format&fit=crop"
+              alt="Matcha Latte"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Matcha Latte</h3>
+            <p class="text-gray-500 text-sm mb-3">Pure Matcha, Fresh Milk</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 18.000</span>
+              <button onclick="addToCart('Matcha Latte', 18000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Snack Items -->
+        <div
+          class="menu-item snack bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="350">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=800&auto=format&fit=crop"
+              alt="Croissant"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Croissant</h3>
+            <p class="text-gray-500 text-sm mb-3">Butter Croissant, Original/Choco</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 15.000</span>
+              <button onclick="addToCart('Croissant', 15000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Course -->
+        <div
+          class="menu-item main bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-pink-200 transition-all group border border-pink-100"
+          data-aos="zoom-in" data-aos-delay="400">
+          <div class="h-48 bg-gray-200 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1603133872878-684f203fb73a?q=80&w=800&auto=format&fit=crop"
+              alt="Nasi Goreng Jiva"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-5">
+            <h3 class="text-xl font-bold text-gray-800 mb-1">Nasi Goreng Jiva</h3>
+            <p class="text-gray-500 text-sm mb-3">Spesial dengan Telur & Sate</p>
+            <div class="flex justify-between items-center">
+              <span class="text-pink-600 font-bold text-lg">Rp 22.000</span>
+              <button onclick="addToCart('Nasi Goreng Jiva', 22000)"
+                class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-500 hover:text-white transition-all transform hover:rotate-90">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <button onclick="openModal('menuModal')"
+          class="inline-block border-2 border-pink-500 text-pink-600 px-8 py-3 rounded-full font-bold hover:bg-pink-500 hover:text-white transition-colors animate-bounce shadow-md">
+          Lihat Daftar Menu Lengkap 📜
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIL BISNIS -->
+  <section id="profil" class="py-16" style="background-color: #FFF8E7;">
+    <div class="max-w-4xl mx-auto px-6">
+      <div data-aos="fade-up">
+        <h2 class="text-3xl font-bold mb-6 text-center">Profil Bisnis</h2>
+        <div class="space-y-4">
+          <div class="flex items-start space-x-4 p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
+            <i class="fas fa-coffee text-orange-500 text-xl mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-lg">Nama Usaha</h4>
+              <p class="text-gray-600">
+                JIVA COFFE BY JF</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+            <i class="fas fa-map-marker-alt text-blue-500 text-xl mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-lg">Lokasi</h4>
+              <p class="text-gray-600">jalan raya,perkotaan</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+            <i class="fas fa-clock text-green-500 text-xl mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-lg">Jam Operasional</h4>
+              <p class="text-gray-600">Setiap hari 10.00 – 03.00</p>
+            </div>
+          </div>
+          <div class="flex items-start space-x-4 p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+            <i class="fas fa-utensils text-purple-500 text-xl mt-1"></i>
+            <div>
+              <h4 class="font-semibold text-lg">Layanan</h4>
+              <p class="text-gray-600">Ruang Meetingf / Ruang VIP / WIFI / + Board Game,berbagai permainan ringan untuk
+                menemani waktu santai
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALISIS PASAR -->
+  <section class="bg-gray-900 text-white py-16" id="pasar">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Analisis Pasar</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gray-800 p-6 rounded-xl card-hover group" data-aos="flip-left">
+          <div
+            class="bg-orange-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-users text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Target Pasar</h3>
+          <p class="text-gray-300">15-35 Tahun,terdiri dari pelajar,mahasiswa dan pekerja muda.
+
+          </p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl card-hover group" data-aos="flip-left" data-aos-delay="100">
+          <div
+            class="bg-green-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-chart-line text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Minat Ngopi & Belajar Meningkat</h3>
+          <p class="text-gray-300">Meningkatnya kebutuhan tempat nyaman untuk nongki dan Belajar
+
+          </p>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-xl card-hover group" data-aos="flip-left" data-aos-delay="200">
+          <div
+            class="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-door-open text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Kesempatan Pasar Lokal</h3>
+          <p class="text-gray-300">Peluang besar untuk menjadi caffe belajar pilihan
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGI -->
+  <section class="py-16 text-white" id="pemasaran" style="background-color: #f472b6;">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-8 text-center" data-aos="fade-up">Strategi Pemasaran</h2>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow card-hover group text-center" data-aos="zoom-in">
+          <div
+            class="bg-gradient-to-r from-blue-400 to-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-mobile-alt text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Media Sosial</h3>
+          <p class="text-gray-600 text-sm">Promosi di Instagram, TikTok, WhatsApp,Facebook</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group text-center" data-aos="zoom-in"
+          data-aos-delay="100">
+          <div
+            class="bg-gradient-to-r from-green-400 to-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-tags text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Diskon Spesial</h3>
+          <p class="text-gray-600 text-sm">Harga hemat untuk member & pelajar</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group text-center" data-aos="zoom-in"
+          data-aos-delay="200">
+          <div
+            class="bg-gradient-to-r from-purple-400 to-purple-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-user-friends text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Paket hemat</h3>
+          <p class="text-gray-600 text-sm">Paket keluarga & Paket shering</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow card-hover group text-center" data-aos="zoom-in"
+          data-aos-delay="300">
+          <div
+            class="bg-gradient-to-r from-orange-400 to-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <i class="fas fa-star text-white text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-lg mb-2">Pelayanan Prima</h3>
+          <p class="text-gray-600 text-sm">Tempat bersih dan nyaman , Pesanan datang tepat waktu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <i class="fas fa-mug-hot text-orange-500 text-2xl"></i>
+            <span class="font-bold text-xl">JIVA COFFE BY JF
+
+
+            </span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            selain menu nya yang terjangkau pelayanan nya juga
+            sangat ramah.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+              <i class="fab fa-facebook text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+              <i class="fab fa-tiktok text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Link Cepat</h3>
+          <ul class="space-y-2">
+            <li><a href="#ringkasan" class="text-gray-400 hover:text-orange-500 transition-colors">Ringkasan</a></li>
+            <li><a href="#profil" class="text-gray-400 hover:text-orange-500 transition-colors">Profil Bisnis</a></li>
+            <li><a href="#pasar" class="text-gray-400 hover:text-orange-500 transition-colors">Analisis Pasar</a></li>
+            <li><a href="#pemasaran" class="text-gray-400 hover:text-orange-500 transition-colors">Strategi
+                Pemasaran</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Hubungi Kami</h3>
+          <div class="space-y-3">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-phone text-orange-500"></i>
+              <span class="text-gray-400">+62 831-94856402</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-envelope text-orange-500"></i>
+              <span class="text-gray-400">jivabyjf@gmail.com</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-map-marker-alt text-orange-500"></i>
+              <span class="text-gray-400">Jl. semangka No. 123, pucuk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p class="text-gray-400">© 2026 JIVA COFFE BY JFkan| Web Profile Bisnis</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODALS -->
+  <!-- Back to Top Button -->
+  </button>
+
+  <!-- Floating Cart Button -->
+  <button id="cartBtn" onclick="openModal('checkoutModal')"
+    class="fixed bottom-24 right-8 bg-pink-500 text-white w-14 h-14 rounded-full shadow-2xl hidden hover:bg-pink-600 transition-all z-40 items-center justify-center transform hover:scale-110">
+    <i class="fas fa-shopping-cart text-xl"></i>
+    <span id="cartCount" class="cart-badge">0</span>
+  </button>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true"
+        onclick="closeModal('loginModal')"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div
+        class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative">
+          <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+          <div class="sm:flex sm:items-start justify-center">
+            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+              <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-orange-100 mb-4">
+                <i class="fas fa-user text-orange-600 text-xl"></i>
+              </div>
+              <h3 class="text-2xl leading-6 font-bold text-gray-900 text-center mb-6" id="modal-title">
+                Login Akun
+              </h3>
+              <form id="loginForm" class="space-y-4">
+                <div>
+                  <label for="loginUsername" class="block text-sm font-medium text-gray-700">Username</label>
+                  <input type="text" id="loginUsername" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                  <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                  <input type="password" id="loginPassword" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div class="pt-2">
+                  <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors">
+                    Masuk Sekarang
+                  </button>
+                </div>
+              </form>
+              <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">
+                  Belum punya akun?
+                  <button onclick="switchModal('loginModal', 'registerModal')"
+                    class="font-medium text-orange-600 hover:text-orange-500">
+                    Daftar disini
+                  </button>
+                </p>
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                  <button onclick="switchModal('loginModal', 'adminLoginModal')"
+                    class="text-xs text-gray-400 hover:text-gray-600 transition-colors flex items-center justify-center w-full group">
+                    <i class="fas fa-user-shield mr-2 group-hover:text-amber-800"></i> Masuk sebagai Pemilik Bisnis
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Login Modal (Premium/Modern) -->
+  <div id="adminLoginModal" class="fixed inset-0 z-[70] hidden overflow-y-auto" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen px-4 text-center">
+      <!-- Backdrop with blur -->
+      <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" aria-hidden="true"
+        onclick="closeModal('adminLoginModal')"></div>
+
+      <!-- Modal Card -->
+      <div
+        class="relative bg-gray-900 border border-amber-500/30 rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:max-w-md w-full p-1">
+        <!-- Decorative Glow -->
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent">
+        </div>
+
+        <div class="bg-gray-900/95 backdrop-blur-xl p-8 rounded-[22px] relative z-10">
+          <button onclick="closeModal('adminLoginModal')"
+            class="absolute top-4 right-4 text-gray-500 hover:text-amber-400 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+
+          <div class="text-center mb-8">
+            <div
+              class="w-20 h-20 bg-gradient-to-br from-amber-600 to-amber-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-amber-900/50 transform rotate-45">
+              <i class="fas fa-coffee text-amber-100 text-3xl -rotate-45"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white tracking-wide mt-6">OWNER ACCESS</h3>
+            <p class="text-amber-500/60 text-sm uppercase tracking-widest mt-1">Jiva Coffee Business Panel</p>
+          </div>
+
+          <form id="adminLoginForm" class="space-y-5">
+            <div class="relative group">
+              <i
+                class="fas fa-user absolute left-3 top-3.5 text-gray-500 group-focus-within:text-amber-500 transition-colors"></i>
+              <input type="text" id="adminUsername" placeholder="Username Owner" required
+                class="block w-full pl-10 pr-3 py-3 bg-gray-800 border border-gray-700 rounded-xl text-amber-100 placeholder-gray-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all">
+            </div>
+            <div class="relative group">
+              <i
+                class="fas fa-lock absolute left-3 top-3.5 text-gray-500 group-focus-within:text-amber-500 transition-colors"></i>
+              <input type="password" id="adminPassword" placeholder="PIN / Password" required
+                class="block w-full pl-10 pr-3 py-3 bg-gray-800 border border-gray-700 rounded-xl text-amber-100 placeholder-gray-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all">
+            </div>
+            <button type="submit"
+              class="w-full py-3.5 bg-gradient-to-r from-amber-600 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white font-bold rounded-xl shadow-lg shadow-amber-900/40 transform active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
+              <i class="fas fa-key"></i> MASUK DASHBOARD
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <button onclick="switchModal('adminLoginModal', 'loginModal')"
+              class="text-sm text-gray-500 hover:text-amber-500 transition-colors">
+              <i class="fas fa-arrow-left mr-1"></i> Kembali ke Menu Pelanggan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Menu Modal -->
+  <div id="menuModal" class="fixed inset-0 z-[80] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-pink-900/50 backdrop-blur-sm transition-opacity" aria-hidden="true"
+        onclick="closeModal('menuModal')"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <div
+        class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full border-4 border-pink-200">
+        <div class="bg-gradient-to-r from-pink-100 to-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative">
+          <button onclick="closeModal('menuModal')"
+            class="absolute top-4 right-4 text-pink-400 hover:text-pink-600 bg-white rounded-full p-2 shadow-sm">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+
+          <div class="text-center mb-6">
+            <h3 class="text-3xl font-bold text-pink-600 font-serif">🌸 Daftar Menu JIVA 🌸</h3>
+            <p class="text-gray-500 text-sm">Semua kelezatan dalam satu daftar</p>
+          </div>
+
+          <div class="space-y-8 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+
+            <!-- Category: Coffee -->
+            <div>
+              <h4 class="text-xl font-bold text-amber-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-mug-hot mr-2 text-pink-500"></i> Coffee Series
+              </h4>
+              <ul class="space-y-3">
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Kopi Sanger</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Cappucino</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Espresso</span></div>
+                  <span class="font-bold text-pink-600">Rp 10.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Coffee Latte</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Coffee Milk</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Caramel Macchiato</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Vanilla Latte</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Americano</span></div>
+                  <span class="font-bold text-pink-600">Rp 12.000</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category: Non-Coffee -->
+            <div>
+              <h4 class="text-xl font-bold text-green-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-leaf mr-2 text-green-500"></i> Non-Coffee & Tea
+              </h4>
+              <ul class="space-y-3">
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Oreo Milk Ice Cream</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Milk Tea</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Thai Tea</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Matcha Latte</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Hot Chocolate</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Lemon Tea</span></div>
+                  <span class="font-bold text-pink-600">Rp 10.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Lychee Tea</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category: Main Course -->
+            <div>
+              <h4 class="text-xl font-bold text-red-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-utensils mr-2 text-red-500"></i> Main Course
+              </h4>
+              <ul class="space-y-3">
+                <!-- Western & Pasta -->
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Spaghetti Bolognese</span></div>
+                  <span class="font-bold text-pink-600">Rp 22.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Spaghetti Carbonara</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Pasta Special</span></div>
+                  <span class="font-bold text-pink-600">Rp 23.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Beef Steak</span></div>
+                  <span class="font-bold text-pink-600">Rp 55.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Steak Ayam</span></div>
+                  <span class="font-bold text-pink-600">Rp 30.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Burger Premium</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+
+                <!-- Rice & Noodles -->
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Nasi Goreng Special</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Chicken Rice Bowl</span></div>
+                  <span class="font-bold text-pink-600">Rp 22.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Ayam Geprek</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Chicken Katsu</span></div>
+                  <span class="font-bold text-pink-600">Rp 22.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Mie Tiaw</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Ramen Spicy / Original</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Ramyeon (Korean)</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Beef Bowl</span></div>
+                  <span class="font-bold text-pink-600">Rp 35.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Bibimbap</span></div>
+                  <span class="font-bold text-pink-600">Rp 30.000</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category: Snack -->
+            <div>
+              <h4 class="text-xl font-bold text-yellow-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-cookie-bite mr-2 text-yellow-600"></i> Snack & Bites
+              </h4>
+              <ul class="space-y-3">
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Kentang Goreng</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Sosis Goreng</span></div>
+                  <span class="font-bold text-pink-600">Rp 12.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Bakso Goreng</span></div>
+                  <span class="font-bold text-pink-600">Rp 12.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Nugget</span></div>
+                  <span class="font-bold text-pink-600">Rp 12.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Mendoan</span></div>
+                  <span class="font-bold text-pink-600">Rp 10.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Curry Puff</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Churros Coklat</span></div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Pisang Coklat</span></div>
+                  <span class="font-bold text-pink-600">Rp 12.000</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category: Bakery & Pastry -->
+            <div>
+              <h4 class="text-xl font-bold text-blue-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-bread-slice mr-2 text-blue-500"></i> Bakery & Pastry
+              </h4>
+              <ul class="space-y-3">
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div>
+                    <span class="font-bold text-gray-800">Croissant</span>
+                    <p class="text-xs text-gray-500">Butter, Coklat, Almond, Keju</p>
+                  </div>
+                  <span class="font-bold text-pink-600">Rp 18.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div>
+                    <span class="font-bold text-gray-800">Cromboloni</span>
+                    <p class="text-xs text-gray-500">Coklat, Keju, Strawberry</p>
+                  </div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div>
+                    <span class="font-bold text-gray-800">Donut Series</span>
+                    <p class="text-xs text-gray-500">Coklat, Almond, Keju, Hazelnut</p>
+                  </div>
+                  <span class="font-bold text-pink-600">Rp 10.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Bagel</span></div>
+                  <span class="font-bold text-pink-600">Rp 15.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Sourdough</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Category: Dessert -->
+            <div>
+              <h4 class="text-xl font-bold text-purple-800 border-b-2 border-pink-200 pb-2 mb-4 flex items-center">
+                <i class="fas fa-ice-cream mr-2 text-purple-500"></i> Dessert & Sweets
+              </h4>
+              <ul class="space-y-3">
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Cheesecake</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Lava Cake</span></div>
+                  <span class="font-bold text-pink-600">Rp 22.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div><span class="font-bold text-gray-800">Waffle Ice Cream</span></div>
+                  <span class="font-bold text-pink-600">Rp 20.000</span>
+                </li>
+                <li class="flex justify-between items-center p-3 bg-white border border-pink-100 rounded-xl">
+                  <div><span class="font-bold text-gray-800">Red Velvet Cake</span></div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+                <li
+                  class="flex justify-between items-center p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-colors">
+                  <div>
+                    <span class="font-bold text-gray-800">Gelato</span>
+                    <p class="text-xs text-gray-500">Coklat, Matcha, Almond</p>
+                  </div>
+                  <span class="font-bold text-pink-600">Rp 25.000</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-pink-200 text-center">
+            <button onclick="closeModal('menuModal')"
+              class="bg-pink-500 text-white px-8 py-3 rounded-full font-bold hover:bg-pink-600 transition-colors shadow-lg shadow-pink-200/50">
+              Tutup Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal (Order Now) -->
+  <div id="checkoutModal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-900 bg-opacity-75 backdrop-blur-sm transition-opacity" aria-hidden="true"
+        onclick="closeModal('checkoutModal')"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div
+        class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full">
+        <div class="bg-white px-6 pt-6 pb-6 relative">
+          <button onclick="closeModal('checkoutModal')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+
+          <div class="mb-6">
+            <h3 class="text-3xl font-bold text-gray-900 flex items-center">
+              <i class="fas fa-shopping-bag mr-3 text-pink-500"></i> Pesanan Kamu
+            </h3>
+            <p class="text-gray-500">Selesaikan pesananmu di bawah ini ✨</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <!-- Order Summary -->
+            <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+              <h4 class="font-bold text-lg mb-4 text-gray-800 border-b pb-2">Ringkasan Pesanan</h4>
+              <div id="cartItemsList" class="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                <!-- Cart items will be injected here -->
+                <p class="text-gray-400 text-center py-8">Keranjangmu masih kosong ☕</p>
+              </div>
+              <div class="mt-4 pt-4 border-t border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span id="cartSubtotal" class="font-bold">Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center text-xl">
+                  <span class="font-bold text-gray-900">Total</span>
+                  <span id="cartTotal" class="font-bold text-pink-600">Rp 0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div>
+              <h4 class="font-bold text-lg mb-4 text-gray-800">Pilih Metode Pembayaran</h4>
+              <div class="grid grid-cols-2 gap-3">
+                <!-- DANA -->
+                <div onclick="selectPayment('DANA', this)"
+                  class="payment-option p-4 rounded-xl bg-blue-50 border-blue-100 flex flex-col items-center justify-center text-center group">
+                  <div class="w-12 h-12 flex items-center justify-center mb-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain_id.png" alt="DANA"
+                      class="max-w-full h-auto grayscale group-hover:grayscale-0 transition-opacity">
+                  </div>
+                  <span class="text-sm font-bold text-blue-600">DANA</span>
+                </div>
+                <!-- OVO -->
+                <div onclick="selectPayment('OVO', this)"
+                  class="payment-option p-4 rounded-xl bg-purple-50 border-purple-100 flex flex-col items-center justify-center text-center group">
+                  <div class="w-12 h-12 flex items-center justify-center mb-2">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/2560px-Logo_ovo_purple.svg.png"
+                      alt="OVO" class="max-w-full h-auto h-6 grayscale group-hover:grayscale-0 transition-opacity">
+                  </div>
+                  <span class="text-sm font-bold text-purple-600">OVO</span>
+                </div>
+                <!-- GOPAY -->
+                <div onclick="selectPayment('GOPAY', this)"
+                  class="payment-option p-4 rounded-xl bg-cyan-50 border-cyan-100 flex flex-col items-center justify-center text-center group">
+                  <div class="w-12 h-12 flex items-center justify-center mb-2">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/2560px-Gopay_logo.svg.png"
+                      alt="GOPAY" class="max-w-full h-auto h-5 grayscale group-hover:grayscale-0 transition-opacity">
+                  </div>
+                  <span class="text-sm font-bold text-cyan-600">GOPAY</span>
+                </div>
+                <!-- SHOPEE PAY -->
+                <div onclick="selectPayment('SHOPEE PAY', this)"
+                  class="payment-option p-4 rounded-xl bg-orange-50 border-orange-100 flex flex-col items-center justify-center text-center group">
+                  <div class="w-12 h-12 flex items-center justify-center mb-2">
+                    <img src="https://help.shopee.co.id/s/cms/help_center/ShopeePay_Logo.png" alt="SHOPEE PAY"
+                      class="max-w-full h-auto h-10 grayscale group-hover:grayscale-0 transition-opacity">
+                  </div>
+                  <span class="text-sm font-bold text-orange-600">SHOPEE PAY</span>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Catatan Pesanan (Opsional)</label>
+                <textarea id="orderNotes" rows="2"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-pink-500 focus:border-pink-500"
+                  placeholder="Contoh: Kurangi gula, atau Level pedas 5..."></textarea>
+              </div>
+
+              <button onclick="processOrder()" id="btnOrderNow"
+                class="w-full mt-6 bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-pink-200 transition-all transform hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                Pesan Sekarang 🚀
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 pt-4 border-t border-pink-200 text-center">
+    <button onclick="closeModal('menuModal')"
+      class="bg-pink-500 text-white px-8 py-3 rounded-full font-bold hover:bg-pink-600 transition-colors shadow-lg shadow-pink-200/50">
+      Tutup Menu
+    </button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true"
+        onclick="closeModal('registerModal')"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+      <div
+        class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative">
+          <button onclick="closeModal('registerModal')"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+          <div class="sm:flex sm:items-start justify-center">
+            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+              <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                <i class="fas fa-user-plus text-green-600 text-xl"></i>
+              </div>
+              <h3 class="text-2xl leading-6 font-bold text-gray-900 text-center mb-6">
+                Daftar Akun Baru
+              </h3>
+              <form id="registerForm" class="space-y-4">
+                <div>
+                  <label for="regUsername" class="block text-sm font-medium text-gray-700">Username</label>
+                  <input type="text" id="regUsername" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                  <label for="regEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" id="regEmail" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div>
+                  <label for="regPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                  <input type="password" id="regPassword" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <div class="pt-2">
+                  <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    Daftar Sekarang
+                  </button>
+                </div>
+              </form>
+              <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">
+                  Sudah punya akun?
+                  <button onclick="switchModal('registerModal', 'loginModal')"
+                    class="font-medium text-orange-600 hover:text-orange-500">
+                    Login disini
+                  </button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // --- AUTHENTICATION LOGIC (LocalStorage) ---
+
+    // Modal Functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Enable scrolling
+    }
+
+    function switchModal(closeId, openId) {
+      closeModal(closeId);
+      openModal(openId);
+    }
+
+    // Auth Functions
+    const USERS_KEY = 'jiva_users';
+    const CURRENT_USER_KEY = 'jiva_current_user';
+
+    function getUsers() {
+      return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+    }
+
+    function saveUser(user) {
+      const users = getUsers();
+      users.push(user);
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+
+    function login(username, password) {
+      // Check registered users
+      const users = getUsers();
+      const user = users.find(u => u.username === username && u.password === password);
+
+      if (user) {
+        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+
+        // ADMIN REDIRECT LOGIC
+        if (user.username.toLowerCase() === 'admin') {
+          alert('Login Admin Berhasil!');
+          window.location.href = 'admin.html';
+          return true;
+        }
+
+        updateAuthUI();
+        closeModal('loginModal');
+        alert('Login Berhasil! Selamat datang, ' + user.username);
+        return true;
+      } else {
+        alert('Login Gagal! Username atau password salah.');
+        return false;
+      }
+    }
+
+    function register(username, email, password) {
+      const users = getUsers();
+      if (users.find(u => u.username === username)) {
+        alert('Username sudah digunakan!');
+        return false;
+      }
+
+      const newUser = { username, email, password, role: 'user', joined: new Date().toISOString() };
+      saveUser(newUser);
+
+      // Auto login after register
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(newUser));
+      updateAuthUI();
+      closeModal('registerModal');
+      alert('Registrasi Berhasil!');
+      return true;
+    }
+
+    function logout() {
+      localStorage.removeItem(CURRENT_USER_KEY);
+      updateAuthUI();
+      alert('Anda telah logout.');
+    }
+
+    function updateAuthUI() {
+      const currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
+      const authSection = document.getElementById('authSection');
+      const mobileAuthSection = document.getElementById('mobileAuthSection');
+
+      // Desktop UI
+      if (currentUser) {
+        if (authSection) {
+          authSection.innerHTML = `
+            <div class="flex items-center space-x-3">
+              <span class="font-medium text-gray-700 dark:text-gray-200">Hi, ${currentUser.username}</span>
+              <button onclick="logout()" class="text-sm bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition-colors shadow-sm">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          `;
+        }
+
+        // Mobile UI
+        if (mobileAuthSection) {
+          mobileAuthSection.innerHTML = `
+            <div class="flex flex-col space-y-2">
+              <div class="text-center font-medium text-gray-700 dark:text-gray-200 py-2">Hi, ${currentUser.username}</div>
+              <button onclick="logout()" class="w-full text-center bg-red-500 text-white py-2 rounded-lg font-medium hover:bg-red-600 transition-colors">
+                Logout
+              </button>
+            </div>
+          `;
+        }
+      } else {
+        if (authSection) {
+          authSection.innerHTML = `
+            <button onclick="openModal('loginModal')" class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-full font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              Login
+            </button>
+          `;
+        }
+
+        // Mobile UI
+        if (mobileAuthSection) {
+          mobileAuthSection.innerHTML = `
+            <button onclick="openModal('loginModal')" class="w-full text-center bg-orange-500 text-white py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+              Login
+            </button>
+          `;
+        }
+      }
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      updateAuthUI();
+
+      // Login Form
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('loginUsername').value;
+          const password = document.getElementById('loginPassword').value;
+          login(username, password);
+        });
+      }
+
+      // Register Form
+      const registerForm = document.getElementById('registerForm');
+      if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('regUsername').value;
+          const email = document.getElementById('regEmail').value;
+          const password = document.getElementById('regPassword').value;
+          register(username, email, password);
+        });
+      }
+      // Admin Login Form
+      const adminLoginForm = document.getElementById('adminLoginForm');
+      if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const username = document.getElementById('adminUsername').value;
+          const password = document.getElementById('adminPassword').value;
+
+          // Hardcoded Admin Check (Prototype)
+          if (username.toLowerCase() === 'jihan fadhilla' && password === '120409') {
+            // Create admin session
+            const adminUser = { username: 'Owner: Jihan Fadhilla', role: 'admin', joined: new Date().toISOString() };
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(adminUser));
+
+            // Animasi loading
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifikasi...';
+
+            setTimeout(() => {
+              window.location.href = 'admin.html';
+            }, 1500);
+          } else {
+            alert('Akses Ditolak! Username atau Password salah.');
+          }
+        });
+      }
+    });
+
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const icon = darkModeToggle.querySelector('i');
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      body.classList.add('dark');
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+
+      if (body.classList.contains('dark')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('darkMode', 'true');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('darkMode', 'false');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 100) {
+        header.classList.add('shadow-lg');
+      } else {
+        header.classList.remove('shadow-lg');
+      }
+
+      lastScroll = currentScroll;
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add loading animation logic
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 500);
+      }, 2000); // Show loader for 2 seconds for cute effect
+    });
+
+    // Interactive button animations
+    const buttons = document.querySelectorAll('button, a');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', function () {
+        this.style.transform = 'scale(1.05)';
+      });
+
+      button.addEventListener('mouseleave', function () {
+        this.style.transform = 'scale(1)';
+      });
+    });
+
+    // Menu Filter Function
+    function filterMenu(category, btn) {
+      // Reset active state
+      document.querySelectorAll('.menu-btn').forEach(b => {
+        b.classList.remove('bg-orange-500', 'text-white');
+        b.classList.add('text-orange-600');
+      });
+
+      // Set active state
+      btn.classList.remove('text-orange-600');
+      btn.classList.add('bg-orange-500', 'text-white');
+
+      // Filter items
+      const items = document.querySelectorAll('.menu-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+          // Add simple fade in
+          item.animate([
+            { opacity: 0, transform: 'scale(0.9)' },
+            { opacity: 1, transform: 'scale(1)' }
+          ], { duration: 300 });
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Back to Top Logic
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        if (backToTopBtn) {
+          backToTopBtn.classList.remove('hidden');
+          backToTopBtn.classList.add('flex');
+        }
+      } else {
+        if (backToTopBtn) {
+          backToTopBtn.classList.add('hidden');
+          backToTopBtn.classList.remove('flex');
+        }
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // --- CART LOGIC ---
+    let cart = [];
+    let selectedPaymentMethod = '';
+
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+
+      updateCartUI();
+      showToast(`Berhasil menambahkan ${name} 🌸`);
+    }
+
+    function removeFromCart(index) {
+      if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+      } else {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const itemsList = document.getElementById('cartItemsList');
+      const cartCount = document.getElementById('cartCount');
+      const cartBtn = document.getElementById('cartBtn');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      const totalEl = document.getElementById('cartTotal');
+
+      let total = 0;
+      let count = 0;
+
+      if (cart.length === 0) {
+        if (itemsList) itemsList.innerHTML = '<p class="text-gray-400 text-center py-8">Keranjangmu masih kosong ☕</p>';
+        if (cartBtn) cartBtn.classList.add('hidden');
+      } else {
+        if (cartBtn) {
+          cartBtn.classList.remove('hidden');
+          cartBtn.classList.add('flex');
+        }
+
+        if (itemsList) {
+          itemsList.innerHTML = cart.map((item, index) => {
+            total += item.price * item.quantity;
+            count += item.quantity;
+            return `
+              <div class="flex justify-between items-center bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                <div class="flex-1">
+                  <h5 class="font-bold text-gray-800">${item.name}</h5>
+                  <p class="text-xs text-gray-500">${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <button onclick="removeFromCart(${index})" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-red-500 hover:text-white transition-colors">
+                    <i class="fas fa-minus text-xs"></i>
+                  </button>
+                  <span class="font-bold w-4 text-center">${item.quantity}</span>
+                  <button onclick="addToCart('${item.name}', ${item.price})" class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-green-500 hover:text-white transition-colors">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      if (cartCount) cartCount.innerText = count;
+      if (subtotalEl) subtotalEl.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+      if (totalEl) totalEl.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function selectPayment(method, element) {
+      selectedPaymentMethod = method;
+
+      // Reset selection
+      document.querySelectorAll('.payment-option').forEach(opt => {
+        opt.classList.remove('selected', 'ring-2', 'ring-pink-500');
+      });
+
+      // Set selection
+      element.classList.add('selected', 'ring-2', 'ring-pink-500');
+    }
+
+    function processOrder() {
+      if (cart.length === 0) {
+        alert('Keranjang kamu masih kosong!');
+        return;
+      }
+
+      if (!selectedPaymentMethod) {
+        alert('Pilih metode pembayaran terlebih dahulu!');
+        return;
+      }
+
+      const currentUser = JSON.parse(localStorage.getItem('jiva_current_user'));
+      if (!currentUser) {
+        alert('Silahkan Login terlebih dahulu untuk memesan! 💕');
+        openModal('loginModal');
+        return;
+      }
+
+      const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      const notes = document.getElementById('orderNotes').value;
+
+      // Mock processing
+      const btn = document.getElementById('btnOrderNow');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+
+      setTimeout(() => {
+        alert(`Pesanan Berhasil! 
+Total: Rp ${total.toLocaleString('id-ID')}
+Metode: ${selectedPaymentMethod}
+Catatan: ${notes || '-'}
+
+Silahkan selesaikan pembayaran di aplikasi ${selectedPaymentMethod} kamu.`);
+
+        // Reset Cart
+        cart = [];
+        selectedPaymentMethod = '';
+        document.getElementById('orderNotes').value = '';
+        updateCartUI();
+        closeModal('checkoutModal');
+
+        btn.disabled = false;
+        btn.innerHTML = 'Pesan Sekarang 🚀';
+      }, 2000);
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl z-[150] transition-all transform translate-y-20 opacity-0';
+      toast.innerHTML = `<div class="flex items-center space-x-2"><i class="fas fa-check-circle text-green-400"></i><span>${message}</span></div>`;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-20', 'opacity-0');
+      }, 100);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    }
+
+  </script>
+
+</body>
