@@ -79,6 +79,22 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
+    .pulse-glow-green {
+      animation: pulseGlowGreen 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlowGreen {
+
+      0%,
+      100% {
+        box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 40px rgba(37, 211, 102, 0.8);
+      }
+    }
+
     /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
@@ -566,8 +582,8 @@
         <i class="fas fa-file-alt text-amber-400 text-4xl"></i>
       </div>
       <h2 class="text-4xl font-bold mb-6 text-amber-100">Ringkasan Eksekutif</h2>
-      <p class="text-xl text-amber-700 mb-10 leading-relaxed max-w-3xl mx-auto">
-        <span class="font-semibold text-amber-400">JIVA COFFE BY JF</span> menghadirkan pengalaman ngopi yang berbeda.
+      <p class="text-xl text-white mb-10 leading-relaxed max-w-3xl mx-auto">
+        <span class="font-semibold text-amber-200">JIVA COFFE BY JF</span> menghadirkan pengalaman ngopi yang berbeda.
         Kami menyajikan ragam minuman <span class="italic">coffee</span> dan <span class="italic">non-coffee</span>
         berkualitas,
         dilengkapi dengan aneka hidangan lezat mulai dari
@@ -584,8 +600,8 @@
             class="bg-amber-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-utensils text-amber-100 text-2xl"></i>
           </div>
-          <h4 class="font-bold text-lg mb-2 text-amber-950 uppercase tracking-wide">Menu Variatif</h4>
-          <p class="text-amber-900 font-bold">
+          <h4 class="font-bold text-lg mb-2 text-white uppercase tracking-wide">Menu Variatif</h4>
+          <p class="text-white font-bold">
             Kopi pilihan, Bakery hangat, dan Pastry favorit pelengkap hari Anda.
           </p>
         </div>
@@ -598,8 +614,8 @@
             class="bg-amber-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-wallet text-amber-100 text-2xl"></i>
           </div>
-          <h4 class="font-bold text-lg mb-2 text-amber-950 uppercase tracking-wide">Harga Terjangkau</h4>
-          <p class="text-amber-900 font-bold">
+          <h4 class="font-bold text-lg mb-2 text-white uppercase tracking-wide">Harga Terjangkau</h4>
+          <p class="text-white font-bold">
             Nikmati kemewahan rasa dengan harga bersahabat, mulai dari Rp 10.000 (Under 10k).
           </p>
         </div>
@@ -612,8 +628,8 @@
             class="bg-amber-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
             <i class="fas fa-couch text-amber-100 text-2xl"></i>
           </div>
-          <h4 class="font-bold text-lg mb-2 text-amber-950 uppercase tracking-wide">Fasilitas Lengkap</h4>
-          <p class="text-amber-900 font-bold">
+          <h4 class="font-bold text-lg mb-2 text-white uppercase tracking-wide">Fasilitas Lengkap</h4>
+          <p class="text-white font-bold">
             Area Indoor Sejuk (AC), Outdoor Nyaman, Spot Smoking, dan WiFi Cepat.
           </p>
         </div>
@@ -810,32 +826,32 @@
             class="flex items-start space-x-4 p-5 bg-[#e2c4a9] rounded-xl hover:bg-[#d8b493] transition-all border-l-8 border-amber-900 shadow-md">
             <i class="fas fa-coffee text-amber-900 text-2xl mt-1"></i>
             <div>
-              <h4 class="font-bold text-lg text-amber-950">Nama Usaha</h4>
-              <p class="text-amber-900 font-bold">JIVA COFFE BY JF</p>
+              <h4 class="font-bold text-lg text-white">Nama Usaha</h4>
+              <p class="text-white font-bold">JIVA COFFE BY JF</p>
             </div>
           </div>
           <div
             class="flex items-start space-x-4 p-5 bg-[#e2c4a9] rounded-xl hover:bg-[#d8b493] transition-all border-l-8 border-amber-900 shadow-md">
             <i class="fas fa-map-marker-alt text-amber-900 text-2xl mt-1"></i>
             <div>
-              <h4 class="font-bold text-lg text-amber-950">Lokasi</h4>
-              <p class="text-amber-900 font-bold">jalan raya,perkotaan</p>
+              <h4 class="font-bold text-lg text-white">Lokasi</h4>
+              <p class="text-white font-bold">jalan raya,perkotaan</p>
             </div>
           </div>
           <div
             class="flex items-start space-x-4 p-5 bg-[#e2c4a9] rounded-xl hover:bg-[#d8b493] border-l-8 border-amber-900 transition-all shadow-md">
             <i class="fas fa-clock text-amber-900 text-2xl mt-1"></i>
             <div>
-              <h4 class="font-bold text-lg text-amber-950">Jam Operasional</h4>
-              <p class="text-amber-900 font-bold">Setiap hari 10.00 – 03.00</p>
+              <h4 class="font-bold text-lg text-white">Jam Operasional</h4>
+              <p class="text-white font-bold">Setiap hari 10.00 – 03.00</p>
             </div>
           </div>
           <div
             class="flex items-start space-x-4 p-5 bg-[#e2c4a9] rounded-xl hover:bg-[#d8b493] border-l-8 border-amber-900 transition-all shadow-md">
             <i class="fas fa-utensils text-amber-900 text-2xl mt-1"></i>
             <div>
-              <h4 class="font-bold text-lg text-amber-950">Layanan</h4>
-              <p class="text-amber-900 font-bold">Ruang Meeting / Ruang VIP / WIFI / + Board Game, berbagai permainan
+              <h4 class="font-bold text-lg text-white">Layanan</h4>
+              <p class="text-white font-bold">Ruang Meeting / Ruang VIP / WIFI / + Board Game, berbagai permainan
                 ringan untuk menemani waktu santai</p>
             </div>
           </div>
@@ -951,7 +967,8 @@
             <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
               <i class="fab fa-instagram text-xl"></i>
             </a>
-            <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
+            <a href="https://wa.me/6285359522112" target="_blank"
+              class="text-gray-400 hover:text-orange-500 transition-colors">
               <i class="fab fa-whatsapp text-xl"></i>
             </a>
             <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors">
@@ -978,7 +995,7 @@
           <div class="space-y-3">
             <div class="flex items-center space-x-3">
               <i class="fas fa-phone text-orange-500"></i>
-              <span class="text-gray-400">+62 831-94856402</span>
+              <span class="text-gray-400">085359522112</span>
             </div>
             <div class="flex items-center space-x-3">
               <i class="fas fa-envelope text-orange-500"></i>
@@ -2111,5 +2128,14 @@ Silahkan selesaikan pembayaran di aplikasi ${selectedPaymentMethod} kamu.`);
     }
 
   </script>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6285359522112" target="_blank"
+    class="fixed bottom-8 left-8 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl z-[100] flex items-center justify-center hover:scale-110 transition-all border-2 border-white pulse-glow-green">
+    <i class="fab fa-whatsapp text-3xl"></i>
+    <span
+      class="absolute left-16 bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-bold shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat
+      Kami âœ¨</span>
+  </a>
 
 </body>
