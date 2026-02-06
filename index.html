@@ -95,6 +95,126 @@
       }
     }
 
+    .luxury-gold-bg {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .luxury-gold-bg::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+      animation: goldFlare 15s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gold-shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 5s infinite;
+    }
+
+    @keyframes goldFlare {
+      0% {
+        transform: rotate(0deg) translate(-10%, -10%);
+      }
+
+      50% {
+        transform: rotate(180deg) translate(10%, 10%);
+      }
+
+      100% {
+        transform: rotate(360deg) translate(-10%, -10%);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .card-3d-container {
+      perspective: 1000px;
+    }
+
+    .card-3d {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card-3d:hover {
+      transform: rotateY(10deg) rotateX(10deg) translateZ(20px);
+      box-shadow:
+        -10px 10px 20px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 215, 0, 0.3);
+      border-color: #ffd700;
+    }
+
+    .card-3d-content {
+      transform: translateZ(50px);
+    }
+
+    .card-3d::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .card-3d:hover::after {
+      opacity: 1;
+    }
+
+    .gold-border-glow {
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+    }
+
+    .gold-border-glow:hover {
+      border-color: #ffd700;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .gold-dust {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #ffd700;
+      border-radius: 50%;
+      filter: blur(1px);
+      opacity: 0.6;
+      animation: float-dust 10s infinite linear;
+    }
+
+    @keyframes float-dust {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(50px) scale(0);
+        opacity: 0;
+      }
+    }
+
     /* Smooth scrolling */
     html {
       scroll-behavior: smooth;
@@ -466,7 +586,10 @@
   </header>
 
   <!-- HERO -->
-  <section class="gradient-bg text-amber-100 min-h-screen flex items-center relative overflow-hidden">
+  <section class="gradient-bg luxury-gold-bg text-amber-100 min-h-screen flex items-center relative overflow-hidden">
+    <!-- Gold Dust Overlay -->
+    <div class="absolute inset-0 z-0 pointer-events-none" id="goldOverlay"></div>
+
     <!-- Animated background elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <!-- Floating Icons -->
@@ -510,65 +633,81 @@
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-bold mb-8 text-center text-amber-900" data-aos="fade-up">Daftar Isi</h2>
       <div class="grid md:grid-cols-3 gap-6">
-        <div
-          class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-hover group cursor-pointer border border-amber-700/30"
-          data-aos="zoom-in">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-file-alt text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
-            <h3 class="font-semibold text-lg text-amber-100">Ringkasan Eksekutif</h3>
+        <div class="card-3d-container" data-aos="zoom-in">
+          <div
+            class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-3d group cursor-pointer border border-amber-700/30 h-full gold-border-glow">
+            <div class="card-3d-content">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-file-alt text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-semibold text-lg text-amber-100">Ringkasan Eksekutif</h3>
+              </div>
+              <p class="text-amber-800 mb-4">Gambaran umum bisnis JIVA COFFE BY JF</p>
+              <a href="#ringkasan" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
+                Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-amber-800 mb-4">Gambaran umum bisnis JIVA COFFE BY JF</p>
-          <a href="#ringkasan" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
-            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
-        <div
-          class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-hover group cursor-pointer border border-amber-700/30"
-          data-aos="zoom-in" data-aos-delay="100">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-store text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
-            <h3 class="font-semibold text-lg text-amber-100">Profil Bisnis</h3>
+        <div class="card-3d-container" data-aos="zoom-in" data-aos-delay="100">
+          <div
+            class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-3d group cursor-pointer border border-amber-700/30 h-full gold-border-glow">
+            <div class="card-3d-content">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-store text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-semibold text-lg text-amber-100">Profil Bisnis</h3>
+              </div>
+              <p class="text-amber-800 mb-4">Informasi lengkap tentang usaha kami</p>
+              <a href="#profil" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
+                Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-amber-800 mb-4">Informasi lengkap tentang usaha kami</p>
-          <a href="#profil" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
-            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
-        <div
-          class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-hover group cursor-pointer border border-amber-700/30"
-          data-aos="zoom-in" data-aos-delay="200">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-chart-line text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
-            <h3 class="font-semibold text-lg text-amber-100">Analisis Pasar</h3>
+        <div class="card-3d-container" data-aos="zoom-in" data-aos-delay="200">
+          <div
+            class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-3d group cursor-pointer border border-amber-700/30 h-full gold-border-glow">
+            <div class="card-3d-content">
+              <div class="flex items-center mb-4">
+                <i
+                  class="fas fa-chart-line text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-semibold text-lg text-amber-100">Analisis Pasar</h3>
+              </div>
+              <p class="text-amber-800 mb-4">Potensi dan peluang caffe</p>
+              <a href="#pasar" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
+                Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-amber-800 mb-4">Potensi dan peluang caffe</p>
-          <a href="#pasar" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
-            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
-        <div
-          class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-hover group cursor-pointer border border-amber-700/30"
-          data-aos="zoom-in" data-aos-delay="300">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-bullhorn text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
-            <h3 class="font-semibold text-lg text-amber-100">Strategi Pemasaran</h3>
+        <div class="card-3d-container" data-aos="zoom-in" data-aos-delay="300">
+          <div
+            class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-3d group cursor-pointer border border-amber-700/30 h-full gold-border-glow">
+            <div class="card-3d-content">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-bullhorn text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-semibold text-lg text-amber-100">Strategi Pemasaran</h3>
+              </div>
+              <p class="text-amber-800 mb-4">Cara kami menjangkau pelanggan</p>
+              <a href="#pemasaran" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
+                Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-amber-800 mb-4">Cara kami menjangkau pelanggan</p>
-          <a href="#pemasaran" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
-            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
-        <div
-          class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-hover group cursor-pointer border border-amber-700/30"
-          data-aos="zoom-in" data-aos-delay="400">
-          <div class="flex items-center mb-4">
-            <i class="fas fa-users text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
-            <h3 class="font-semibold text-lg text-amber-100">Rencana Manajemen</h3>
+        <div class="card-3d-container" data-aos="zoom-in" data-aos-delay="400">
+          <div
+            class="bg-gradient-to-br from-amber-900/80 to-amber-950 p-6 rounded-xl shadow card-3d group cursor-pointer border border-amber-700/30 h-full gold-border-glow">
+            <div class="card-3d-content">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-users text-amber-400 text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                <h3 class="font-semibold text-lg text-amber-100">Rencana Manajemen</h3>
+              </div>
+              <p class="text-amber-800 mb-4">Struktur tim dan operasional</p>
+              <a href="#manajemen" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
+                Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-amber-800 mb-4">Struktur tim dan operasional</p>
-          <a href="#manajemen" class="text-amber-400 hover:text-amber-300 font-medium inline-flex items-center">
-            Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-          </a>
         </div>
 
       </div>
@@ -915,7 +1054,7 @@
           <p class="text-gray-600 text-sm">Promosi di <a href="https://www.instagram.com/jiva.coffe.by.jf/"
               target="_blank" class="text-pink-600 hover:font-bold transition-all">Instagram</a>, <a
               href="https://www.tiktok.com/@jiva.coffe.by.jf?_r=1&_t=ZS-93Zn7ByPllB" target="_blank"
-              class="text-black hover:font-bold transition-all">TikTok</a>, <a href="https://wa.me/6285359522112"
+              class="text-black hover:font-bold transition-all">TikTok</a>, <a href="https://wa.me/6282374104658"
               target="_blank" class="text-green-600 hover:font-bold transition-all">WhatsApp</a>, Facebook</p>
         </div>
         <div class="bg-white p-6 rounded-xl shadow card-hover group text-center" data-aos="zoom-in"
@@ -972,7 +1111,7 @@
               class="text-gray-400 hover:text-orange-500 transition-colors">
               <i class="fab fa-instagram text-xl"></i>
             </a>
-            <a href="https://wa.me/6285359522112" target="_blank"
+            <a href="https://wa.me/6282374104658" target="_blank"
               class="text-gray-400 hover:text-orange-500 transition-colors">
               <i class="fab fa-whatsapp text-xl"></i>
             </a>
@@ -1001,7 +1140,7 @@
           <div class="space-y-3">
             <div class="flex items-center space-x-3">
               <i class="fas fa-phone text-orange-500"></i>
-              <span class="text-gray-400">085359522112</span>
+              <span class="text-gray-400">0823 7410 4658</span>
             </div>
             <div class="flex items-center space-x-3">
               <i class="fas fa-envelope text-orange-500"></i>
@@ -2133,10 +2272,28 @@ Silahkan selesaikan pembayaran di aplikasi ${selectedPaymentMethod} kamu.`);
       }, 3000);
     }
 
+    // Gold Dust Generator
+    function createGoldDust() {
+      const overlay = document.getElementById('goldOverlay');
+      if (!overlay) return;
+
+      for (let i = 0; i < 30; i++) {
+        const dust = document.createElement('div');
+        dust.className = 'gold-dust';
+        dust.style.left = Math.random() * 100 + '%';
+        dust.style.top = Math.random() * 100 + '%';
+        dust.style.animationDelay = Math.random() * 10 + 's';
+        dust.style.opacity = Math.random();
+        overlay.appendChild(dust);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', createGoldDust);
+
   </script>
 
   <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/6285359522112" target="_blank"
+  <a href="https://wa.me/6282374104658" target="_blank"
     class="fixed bottom-8 left-8 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl z-[100] flex items-center justify-center hover:scale-110 transition-all border-2 border-white pulse-glow-green">
     <i class="fab fa-whatsapp text-3xl"></i>
     <span
